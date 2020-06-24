@@ -13,6 +13,7 @@ const defaultState = (gridSize) => {
         currentPlayer: 0, //Index of the 'players' array that is currently playing.
         NumberOfMoves: 0, //To keep a track of draw
         result: null, //-1 is draw, otherwise its the index of the players array that won.
+        drawCount:0,
         players: [{
                 score: 0,
                 choice: 0,

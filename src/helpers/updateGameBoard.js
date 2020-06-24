@@ -11,6 +11,7 @@ const updateGameBoard = (gameStatus, row, col) => {
         _gameStatus.result = _gameStatus.currentPlayer;
     } else if (isDraw) {
         _gameStatus.result = -1;
+        _gameStatus.drawCount++;
     } else {
         _gameStatus.currentPlayer = _gameStatus.currentPlayer === _gameStatus.players.length - 1 ? 0 : _gameStatus.currentPlayer + 1;
     }

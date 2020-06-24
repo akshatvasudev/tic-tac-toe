@@ -13,8 +13,12 @@ const Game = (props) => {
         put('gameState', gameStatus);
     }, [gameStatus])
 
-    const resetState = () => {
-        setGameStatus({ ...defaultState(props.gridSize), players: gameStatus.players })
+    const resetState = (e,hardReset) => {
+    	if(hardReset){
+    		setGameStatus({ ...defaultState(props.gridSize)})
+    		return
+    	}
+        setGameStatus({ ...defaultState(props.gridSize), players: gameStatus.players, drawCount:gameStatus.drawCount })
     }
 
     const updateStateWithNewMove = (row, col) => {
@@ -23,9 +27,10 @@ const Game = (props) => {
 
     return (
         <div className='game'>
-        <ScoreBoard scores={gameStatus.players}/>
+        <ScoreBoard scores={gameStatus.players} drawCount={gameStatus.drawCount}/>
 		<Grid gameStatus={gameStatus.status} updateGameBoard={updateStateWithNewMove}/>
 		{gameStatus.result !== null && <GameEndMessage result={gameStatus.result >= 0?gameStatus.players[gameStatus.result]:gameStatus.result} restartGame={resetState}/>}
+		<button className='hard-reset' onClick={(e) => {resetState(e,true)}}>Reset all games</button>
 		</div>
     )
 }

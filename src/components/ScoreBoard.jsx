@@ -9,6 +9,7 @@ const ScoreBoard = (props) => {
 		return <span key={i}>(<span className={getSymbolClassName(player.choice)}></span>){player.name}:{player.score}</span>
 	})
 	}
+	<span key='draw'>Draw: {props.drawCount}</span>
 	</div>
     )
 }
